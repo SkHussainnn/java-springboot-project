@@ -12,7 +12,7 @@ pipeline {
             steps {
                 echo "Build started"
                 sh 'mvn clean package -Dmaven.test.skip=true'
-                echo "Build completed"   // This is Iftekhar
+                echo "Build completed"
             }
         }
     }
