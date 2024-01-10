@@ -15,15 +15,15 @@ pipeline {
                 echo "Build completed"
             }
         }
-    }
-}
- stage('SonarQube analysis') {
+        stage('SonarQube analysis') {
             environment {
                 scannerHome = tool 'Sonar-Scanner-meportal'
             }
-            steps{
-                withSonarQubeEnv('SonrQube-Server-meportal') {
+            steps {
+                withSonarQubeEnv('SonarQube-Server-meportal') {
                     sh "${scannerHome}/bin/sonar-scanner"
                 }
             }
         }
+    }
+}
