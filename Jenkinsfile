@@ -17,3 +17,13 @@ pipeline {
         }
     }
 }
+ stage('SonarQube analysis') {
+            environment {
+                scannerHome = tool 'Sonar-Scanner-meportal'
+            }
+            steps{
+                withSonarQubeEnv('SonrQube-Server-meportal') {
+                    sh "${scannerHome}/bin/sonar-scanner"
+                }
+            }
+        }
