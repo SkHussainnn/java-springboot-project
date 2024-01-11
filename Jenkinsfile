@@ -50,34 +50,27 @@ pipeline {
             steps {
                 script {
                     echo '------------- Artifact Publish Started ------------'
-                    def server = Artifactory.newServer url: "https://avdmeportal.jfrog.io/artifactory", credentialsId: "jfrog-jenkins-cred"
-                    def properties = "buildid=${env.BUILD_ID},commitid=${GIT_COMMIT}"
+                    def server = Artifactory.newServer url:"https://avdmeportal.jfrog.io//artifactory" ,  credentialsId:"	jfrog-jenkins-cred"
+                    def properties = "buildid=${env.BUILD_ID},commitid=${GIT_COMMIT}";
                     def uploadSpec = """{
                         "files": [
                             {
-                                "pattern": "staging/*",
-                                "target": "release-local-artifacts/",
+                                "pattern": "staging/(*)",
+                                "target": "release-local-artifacts/{1}",
                                 "flat": "false",
                                 "props" : "${properties}",
-                                "exclusions": ["*.sha1", "*.md5"]
+                                "exclusions": [ "*.sha1", "*.md5"]
                             }
                         ]
                     }"""
                     def buildInfo = server.upload(uploadSpec)
-
-                    // Collect environment variables from buildInfo for Jenkins build information
-                    def buildEnv = buildInfo.env.collect()
-
-                    // Use buildEnv to display build-related information
-                    echo "Build Number: ${buildEnv.BUILD_NUMBER}"
-                    echo "Build URL: ${buildEnv.BUILD_URL}"
-
-                    // Publish buildInfo to Artifactory
+                    buildInfo.env.collect()
                     server.publishBuildInfo(buildInfo)
-
-                    echo '------------ Artifact Publish Ended -----------'
+                    echo '------------ Artifact Publish Ended -----------'  
                 }
-            }
+            }   
         }
+
     }
 }
+
