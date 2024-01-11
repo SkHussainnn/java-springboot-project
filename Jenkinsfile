@@ -15,6 +15,7 @@ pipeline {
                 echo "Build completed"
             }
         }
+        /*
         stage("Test Stage") {
             steps {
                 echo "----------- Unit Test Started ----------"
@@ -44,6 +45,30 @@ pipeline {
                 }
             }
         }
+        */
+        stage("Artifact Publish") {
+            steps {
+                script {
+                    echo '------------- Artifact Publish Started ------------'
+                    def server = Artifactory.newServer url: "https://avdmeportal.jfrog.io/artifactory", credentialsId: "jfrog-jenkins-cred"
+                    def properties = "buildid=${env.BUILD_ID},commitid=${GIT_COMMIT}"
+                    def uploadSpec = """{
+                        "files": [
+                            {
+                                "pattern": "staging/*",
+                                "target": "release-local-artifacts/",
+                                "flat": "false",
+                                "props" : "${properties}",
+                                "exclusions": ["*.sha1", "*.md5"]
+                            }
+                        ]
+                    }"""
+                    def buildInfo = server.upload(uploadSpec)
+                    buildInfo.env.collect()
+                    server.publishBuildInfo(buildInfo)
+                    echo '------------ Artifact Publish Ended -----------'
+                }
+            }
+        }
     }
 }
-
