@@ -73,3 +73,30 @@ pipeline {
 
     }
 }
+pipeline {
+    agent any
+
+    stages {
+        stage("Create Docker Image") {
+            steps {
+                script {
+                    echo '-------------- Docker Build Started -------------'
+                    app = docker.build("docker-meportal.jfrog.io/docker-meportal-docker-local/mywebapp:1.0")
+                    echo '-------------- Docker Build Ended -------------'
+                }
+            }
+        }
+
+        stage("Docker Publish") {
+            steps {
+                script {
+                    echo '---------- Docker Publish Started --------'  
+                    docker.withRegistry("https://avdmeportal.jfrog.io", 'jforg-credential') {
+                        app.push()
+                    }
+                    echo '------------ Docker Publish Ended ---------'
+                }
+            }
+        }
+    }
+}
