@@ -15,8 +15,9 @@ pipeline {
                 echo "Build completed"
             }
         }
-        /*
-        stage("Test Stage") {
+
+        // Uncommented stages
+        /*stage("Test Stage") {
             steps {
                 echo "----------- Unit Test Started ----------"
                 sh 'mvn surefire-report:report'
@@ -41,7 +42,7 @@ pipeline {
                         if (qg.status != 'OK') {
                             error "Pipeline aborted due to quality gate failure: ${qg.status}"
                         }
-                    } //AVD GROUP PROJECT
+                    }
                 }
             }
         }
@@ -50,7 +51,7 @@ pipeline {
             steps {
                 script {
                     echo '------------- Artifact Publish Started ------------'
-                    def server = Artifactory.newServer url:"https://avdmeportal.jfrog.io//artifactory" ,  credentialsId:"jforg-credential"
+                    def server = Artifactory.newServer url: "https://avdmeportal.jfrog.io//artifactory", credentialsId: "jforg-credential"
                     def properties = "buildid=${env.BUILD_ID},commitid=${GIT_COMMIT}";
                     def uploadSpec = """{
                         "files": [
@@ -58,25 +59,19 @@ pipeline {
                                 "pattern": "staging/(*)",
                                 "target": "release-local-artifacts/{1}",
                                 "flat": "false",
-                                "props" : "${properties}",
-                                "exclusions": [ "*.sha1", "*.md5"]
+                                "props": "${properties}",
+                                "exclusions": ["*.sha1", "*.md5"]
                             }
                         ]
                     }"""
                     def buildInfo = server.upload(uploadSpec)
                     buildInfo.env.collect()
                     server.publishBuildInfo(buildInfo)
-                    echo '------------ Artifact Publish Ended -----------'  
+                    echo '------------ Artifact Publish Ended -----------'
                 }
-            }   
+            }
         }
 
-    }
-}
-pipeline {
-    agent any
-
-    stages {
         stage("Create Docker Image") {
             steps {
                 script {
