@@ -41,8 +41,6 @@ pipeline {
             }
         }
 
-        /* Uncomment and modify the following stages as needed
-
         stage("Quality Gate") {
             steps {
                 script {
@@ -56,7 +54,7 @@ pipeline {
             }
         }
         
-        stage("Artifact Publish") {
+        /*stage("Artifact Publish") {
             steps {
                 script {
                     echo '------------- Artifact Publish Started ------------'
