@@ -12,7 +12,7 @@ pipeline {
             steps {
                 echo "Build started"
                 script {
-                    sh 'mvn clean package -Dmaven.test.skip=true'
+                    sh 'mvn clean build -Dmaven.test.skip=true'
                 }
                 echo "Build completed"
             }
@@ -28,7 +28,7 @@ pipeline {
             }
         }
 
-        stage('SonarQube Analysis') {
+        /*stage('SonarQube Analysis') {
             environment {
                 scannerHome = tool 'sonar-scanner-meportal'
             }
@@ -52,9 +52,9 @@ pipeline {
                     }
                 }
             }
-        }
+        }*/
         
-        /*stage("Artifact Publish") {
+        stage("Artifact Publish") {
             steps {
                 script {
                     echo '------------- Artifact Publish Started ------------'
@@ -64,7 +64,7 @@ pipeline {
                         "files": [
                             {
                                 "pattern": "staging/(*)",
-                                "target": "release-local-artifacts/{1}",
+                                "target": "release-local-artifacts1/{1}",
                                 "flat": "false",
                                 "props": "${properties}",
                                 "exclusions": ["*.sha1", "*.md5"]
@@ -79,7 +79,7 @@ pipeline {
             }
         }
 
-        stage("Create Docker Image") {
+        /*stage("Create Docker Image") {
             steps {
                 script {
                     echo '-------------- Docker Build Started -------------'
