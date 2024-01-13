@@ -28,18 +28,16 @@ pipeline {
             }
         }
 
-        stage('SonarQube analysis') {
+        stage('SonarQube Analysis') {
             environment {
-                scannerHome = tool'sonar-server-meportal'
+                scannerHome = tool 'sonar-scanner-meportal'
             }
-            steps {
+            steps{
                 withSonarQubeEnv('sonar-server-meportal') {
                     sh "${scannerHome}/bin/sonar-scanner"
                 }
             }
         }
-    }
-}
 
         /*stage("Quality Gate") {
             steps {
