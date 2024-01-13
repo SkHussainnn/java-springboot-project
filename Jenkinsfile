@@ -21,7 +21,7 @@ pipeline {
 }
 
         // Uncommented stages
-        /*stage("Test Stage") {
+        stage("Test Stage") {
             steps {
                 echo "----------- Unit Test Started ----------"
                 sh 'mvn surefire-report:report'
@@ -38,7 +38,7 @@ pipeline {
                 }
             }
         }
-        stage("Quality Gate") {
+        /*stage("Quality Gate") {
             steps {
                 script {
                     timeout(time: 1, unit: 'HOURS') {
