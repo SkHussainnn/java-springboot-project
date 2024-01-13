@@ -17,10 +17,9 @@ pipeline {
                 echo "Build completed"
             }
         }
-    }
-}
 
-        // Uncommented stages
+        // Uncomment the following stages
+
         stage("Test Stage") {
             steps {
                 echo "----------- Unit Test Started ----------"
@@ -28,9 +27,10 @@ pipeline {
                 echo "----------- Unit Test Completed ----------"
             }
         }
+
         stage('SonarQube analysis') {
             environment {
-                scannerHome = tool 'Sonar-Scanner-meportal'
+                scannerHome = tool 'sonar-server-meportal'
             }
             steps {
                 withSonarQubeEnv('SonrQube-Server-meportal') {
@@ -38,6 +38,9 @@ pipeline {
                 }
             }
         }
+    }
+}
+
         /*stage("Quality Gate") {
             steps {
                 script {
