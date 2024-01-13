@@ -84,7 +84,7 @@ pipeline {
             steps {
                 script {
                     echo '-------------- Docker Build Started -------------'
-                    app = docker.build("avdmeportal.jfrog.io/docker-meportal-docker-local/myapp:1.0")
+                    app = docker.build("avdmeportal.jfrog.io/docker-meportal-docker-local/myapp:1.0.1")
                     echo '-------------- Docker Build Ended -------------'
                 }
             }
