@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: meportal-deploy
+  namespace: meportal
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: meportal-deploy
+  template:
+    metadata:
+      labels:
+        app: meportal-deploy
+    spec:
+      imagePullSecrets:
+      - name: jfrogcred
+      containers:
+      - name: meportal-deploy
+        image: avdmeportal.jfrog.io/docker-meportal-docker-local/myapp:1.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
