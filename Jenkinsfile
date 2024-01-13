@@ -80,7 +80,7 @@ pipeline {
         }
 
 
-        /*stage("Create Docker Image") {
+        stage("Create Docker Image") {
             steps {
                 script {
                     echo '-------------- Docker Build Started -------------'
@@ -94,13 +94,13 @@ pipeline {
             steps {
                 script {
                     echo '---------- Docker Publish Started --------'  
-                    docker.withRegistry("https://avdmeportal.jfrog.io", 'jforg-credential') {
+                    docker.withRegistry("https://avdmeportal.jfrog.io", 'jfrog-cred') {
                         app.push()
                     }
                     echo '------------ Docker Publish Ended ---------'
                 }
             }
         }
-        */
+        
     }
 }
