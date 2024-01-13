@@ -20,10 +20,17 @@ pipeline {
 
         // Uncomment the following stages
 
+        pipeline {
+    agent any
+    
+    stages {
         stage("Test Stage") {
             steps {
                 echo "----------- Unit Test Started ----------"
-                sh 'mvn surefire-report:report'
+                script {
+                    // Use 'script' block to run multiple commands or share variables
+                    sh 'mvn surefire-report:report'
+                }
                 echo "----------- Unit Test Completed ----------"
             }
         }
@@ -32,12 +39,18 @@ pipeline {
             environment {
                 scannerHome = tool 'sonar-scanner-meportal'
             }
-            steps{
-                withSonarQubeEnv('sonar-server-meportal') {
-                    sh "${scannerHome}/bin/sonar-scanner"
+            steps {
+                script {
+                    // Use 'script' block to run multiple commands or share variables
+                    withSonarQubeEnv('sonar-server-meportal') {
+                        sh "${scannerHome}/bin/sonar-scanner"
+                    }
                 }
             }
         }
+    }
+}
+
 
         /*stage("Quality Gate") {
             steps {
