@@ -46,7 +46,7 @@ pipeline {
                 }
             }
         }
-        */
+        
         stage("Artifact Publish") {
             steps {
                 script {
@@ -95,3 +95,4 @@ pipeline {
         }
     }
 }
+*/
