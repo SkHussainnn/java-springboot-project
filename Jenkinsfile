@@ -30,7 +30,7 @@ pipeline {
 
         stage('SonarQube analysis') {
             environment {
-                scannerHome = tool 'sonar-server-meportal'
+                scannerHome = tool'sonar-server-meportal'
             }
             steps {
                 withSonarQubeEnv('sonar-server-meportal') {
