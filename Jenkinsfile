@@ -11,10 +11,14 @@ pipeline {
         stage("Build Code") {
             steps {
                 echo "Build started"
-                sh 'mvn clean deploy -Dmaven.test.skip=true'
+                script {
+                    sh 'mvn clean deploy -Dmaven.test.skip=true'
+                }
                 echo "Build completed"
             }
         }
+    }
+}
 
         // Uncommented stages
         /*stage("Test Stage") {
