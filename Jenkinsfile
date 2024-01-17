@@ -101,7 +101,7 @@ pipeline {
                 }
             }
         }
-        stage ("Deploy Stage"){
+        stage ("Deploy Stage"){   //Hussain
             steps {
                 script {
                     sh './deploy.sh'
@@ -111,11 +111,3 @@ pipeline {
     }
 
 }
-
-
-
-        
-
-
-       
-
