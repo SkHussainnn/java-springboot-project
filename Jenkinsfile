@@ -101,13 +101,22 @@ pipeline {
                 }
             }
         }
-        stage ("Deploy Stage"){
+        /*stage ("Deploy Stage"){
             steps {
                 script {
                     sh './deploy.sh'
                 }    
             }
-        }
+        }*/
+        stage(" Deploy ") {
+       steps {
+         script {
+            echo '<--------------- Helm Deploy Started --------------->'
+            sh 'helm install meportal /home/ubuntu/meportal-1.0.0.tgz'
+            echo '<--------------- Helm deploy Ends --------------->'
+         }
+       }
+     }
     }
 
 }
