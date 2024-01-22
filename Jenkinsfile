@@ -18,7 +18,7 @@ pipeline {
             }
         }
 
-        /*stage("Test Stage") {
+        stage("Test Stage") {
             steps {
                 echo "----------- Unit Test Started ----------"
                 script {
@@ -39,7 +39,7 @@ pipeline {
                     }
                 }
             }
-        }
+        }/*
 
         stage("Quality Gate") {
             steps {
