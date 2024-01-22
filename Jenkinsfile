@@ -39,7 +39,7 @@ pipeline {
                     }
                 }
             }
-        }/*
+        }
 
         stage("Quality Gate") {
             steps {
@@ -52,7 +52,7 @@ pipeline {
                     }
                 }
             }
-        }
+        }/*
         
         stage("Artifact Publish") {
             steps {
