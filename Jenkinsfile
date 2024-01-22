@@ -18,7 +18,7 @@ pipeline {
             }
         }
 
-        stage("Test Stage") {
+        /*stage("Test Stage") {
             steps {
                 echo "----------- Unit Test Started ----------"
                 script {
@@ -28,7 +28,7 @@ pipeline {
             }
         }
 
-        /*stage('SonarQube Analysis') {
+        stage('SonarQube Analysis') {
             environment {
                 scannerHome = tool 'sonar-scanner-meportal'
             }
@@ -52,7 +52,7 @@ pipeline {
                     }
                 }
             }
-        }*/
+        }
         
         stage("Artifact Publish") {
             steps {
@@ -101,13 +101,13 @@ pipeline {
                 }
             }
         }
-        /*stage ("Deploy Stage"){
+        stage ("Deploy Stage"){
             steps {
                 script {
                     sh './deploy.sh'
                 }    
             }
-        }*/
+        }
         stage(" Deploy ") {
          steps {
              script {
@@ -116,7 +116,7 @@ pipeline {
                  echo '<--------------- Helm deploy Ends --------------->'
                 }
             }
-        }
+        }*/
     }
 
 }
