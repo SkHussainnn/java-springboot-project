@@ -45,16 +45,16 @@ pipeline {
             steps {
                 script {
                     timeout(time: 1, unit: 'HOURS') {
-                        def qg = waitForQualityGate()
+                        def qg = waitForQualityGate()  //Hussain
                         if (qg.status != 'OK') {
                             error "Pipeline aborted due to quality gate failure: ${qg.status}"
                         }
                     }
                 }
             }
-        }/*
+        }
         
-        stage("Artifact Publish") {
+        /*stage("Artifact Publish") {
             steps {
                 script {
                     echo '------------ Artifact Publish Started -----------'
