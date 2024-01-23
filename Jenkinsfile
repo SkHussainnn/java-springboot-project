@@ -52,7 +52,7 @@ pipeline {
                     }
                 }
             }
-        }
+        }*/
         
         stage("Artifact Publish") {
             steps {
@@ -64,7 +64,7 @@ pipeline {
                         "files": [
                             {
                                 "pattern": "staging/(*)",
-                                "target": "release-local-artifacts1/{1}",
+                                "target": "release-local-artifacts2/{1}",
                                 "flat": "false",
                                 "props" : "${properties}",
                                 "exclusions": [ "*.sha1", "*.md5"]
@@ -80,7 +80,7 @@ pipeline {
         }
 
 
-        stage("Create Docker Image") {
+        /*stage("Create Docker Image") {
             steps {
                 script {
                     echo '-------------- Docker Build Started -------------'
