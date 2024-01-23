@@ -76,21 +76,16 @@ pipeline {
             echo '------------ Artifact Publish Ended -----------'
         }
     }
-}
-
-
-
-
-        /*stage("Create Docker Image") {
+}       
+        stage("Create Docker Image") {
             steps {
                 script {
                     echo '-------------- Docker Build Started -------------'
-                    app = docker.build("avdmeportal.jfrog.io/docker-meportal-docker-local/myapp:1.0.")
+                    app = docker.build("avdmeportal.jfrog.io/mymeportal1-docker-local/myapp:1.0.")
                     echo '-------------- Docker Build Ended -------------'
                 }
             }
         }
-
         stage("Docker Publish") {
             steps {
                 script {
@@ -102,7 +97,7 @@ pipeline {
                 }
             }
         }
-        stage ("Deploy Stage"){
+        /*stage ("Deploy Stage"){
             steps {
                 script {
                     sh './deploy.sh'
