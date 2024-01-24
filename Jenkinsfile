@@ -97,14 +97,14 @@ pipeline {
                 }
             }
         }
-        stage ("Deploy Stage"){
+        /*stage ("Deploy Stage"){
             steps {
                 script {
                     sh './deploy.sh'
                 }    
             }
-        }
-        /*stage(" Deploy ") {
+        }*/
+        stage(" Deploy ") {
          steps {
              script {
                  echo '<--------------- Helm Deploy Started --------------->'
@@ -112,7 +112,7 @@ pipeline {
                  echo '<--------------- Helm deploy Ends --------------->'
                 }
             }
-        }*/
+        }
     }
 
 }
