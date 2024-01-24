@@ -86,7 +86,7 @@ pipeline {
                 }
             }
         }
-        stage("Docker Publish") {
+        stage("Docker Publish") {      //Hussain
             steps {
                 script {
                     echo '---------- Docker Publish Started --------'  
