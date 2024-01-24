@@ -4,7 +4,7 @@ metadata:
   name: meportal-service
   namespace: meportal
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
     app: meportal-deploy
   ports:
